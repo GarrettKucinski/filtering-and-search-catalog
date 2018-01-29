@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'includes/head.html' %}
+<body>
+  <div class="bounds {% if detail %}bounds--small{% endif %}">
+    {% include 'includes/header.html' %}
+    <div class="grid-100 {% if detail %}mineral__container{% endif %}">
+    {% block content %}{% endblock %}
+    </div>
+  </div>
+  {% include 'includes/footer.html' %}
+</body>
+</html>

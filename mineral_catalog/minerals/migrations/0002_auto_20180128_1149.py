@@ -9,15 +9,13 @@ def populate_minerals(apps, schema_editor):
     # We get the model from the versioned app registry;
     # if we directly import it, it'll be the wrong version
     Mineral = apps.get_model('minerals', 'Mineral')
-
     db_alias = schema_editor.connection.alias
-
     data = json.load(open('../data/minerals.json'))
-    normalized_data = list()
 
-    for obj in data:
-        normalized_data.append(
-            {'_'.join(key.split(' ')): value for (key, value) in obj.items()})
+    normalized_data = [
+        {'_'.join(key.split(' ')): value for (key, value) in obj.items()}
+        for obj in data
+    ]
 
     for mineral in normalized_data:
         Mineral.objects.using(db_alias).create(**mineral)
