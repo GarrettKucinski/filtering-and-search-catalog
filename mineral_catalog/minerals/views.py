@@ -6,6 +6,6 @@ from .models import Mineral
 
 
 def mineral_detail(request, pk):
-    mineral = Mineral.objects.get(pk=pk)
+    mineral = Mineral.objects.values().get(pk=pk)
     return render(request, 'mineral_detail.html',
                   {'mineral': mineral, 'detail': True})

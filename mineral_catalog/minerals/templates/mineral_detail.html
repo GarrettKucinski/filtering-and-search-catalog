@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
+{% load mineral_extras %}
 
 {% block content %}
   <h1 class="mineral__name">{{ mineral.name }}</h1>
@@ -11,34 +12,12 @@
   </div>
   <div class="mineral__table-container">
     <table class="mineral__table">
-      <tr>
-        <td class="mineral__category">Category</td>
-        <td>{{ mineral.category }}</td>
-      </tr>
-      <tr>
-        <td class="mineral__category">Formula</td>
-        <td class="mineral__formula">{{ mineral.formula|safe }}</td>
-      </tr>
-      <tr>
-        <td class="mineral__category">Strunz Classification</td>
-        <td>{{ mineral.strunz_classification }}</td>
-      </tr>
-      <tr>
-        <td class="mineral__category">Unit Cell</td>
-        <td>{{ mineral.unit_cell }}</td>
-      </tr>
-      <tr>
-        <td class="mineral__category">Color</td>
-        <td>{{ mineral.color }}</td>
-      </tr>
-      <tr>
-        <td class="mineral__category">Crystal Habit</td>
-        <td>{{ mineral.crystal_habit }}</td>
-      </tr>
-      <tr>
-        <td class="mineral__category">Mohs Scale Hardness</td>
-        <td>{{ mineral.mohs_scale_hardness }}</td>
-      </tr>
+      {% for key, value in mineral.items %}
+        <tr>
+          <td class="mineral__category">{{ key|replace_underscores_with_space|title }}</td>
+          <td {% if key is 'formula' %}class="mineral__formula"{% endif %}>{{ value|safe }}</td>
+        </tr>
+      {% endfor %}
     </table>
   </div>
 {% endblock %}
