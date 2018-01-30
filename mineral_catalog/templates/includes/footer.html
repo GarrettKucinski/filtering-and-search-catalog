@@ -1,3 +1,6 @@
+{% load mineral_extras %}
+
 <div class="minerals__random">
-  <a class="minerals__anchor" href="#">Show random mineral</a>
+  {% generate_random_num as rand %}
+  <a class="minerals__anchor" href="{% url 'minerals:mineral_detail' pk=rand %}">Show random mineral</a>
 </div>

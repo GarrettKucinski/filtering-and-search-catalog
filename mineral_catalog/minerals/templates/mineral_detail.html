@@ -8,15 +8,17 @@
     {% with 'images/'|add:mineral.name|add:'.jpg' as mineral_image %}
       <img class="mineral__image" src="{% static mineral_image %}">
     {% endwith %}
-    <p class="mineral__caption">{{ mineral.caption }}</p>
+    <p class="mineral__caption">{{ mineral.image_caption }}</p>
   </div>
   <div class="mineral__table-container">
     <table class="mineral__table">
       {% for key, value in mineral.items %}
-        <tr>
-          <td class="mineral__category">{{ key|replace_underscores_with_space|title }}</td>
-          <td {% if key is 'formula' %}class="mineral__formula"{% endif %}>{{ value|safe }}</td>
-        </tr>
+        {% if key != 'id' and key != 'image_caption' and key != 'image_filename' and key != 'name' %}
+          <tr>
+            <td class="mineral__category">{{ key|replace_underscores_with_space|title }}</td>
+            <td {% if key is 'formula' %}class="mineral__formula"{% endif %}>{{ value|safe }}</td>
+          </tr>
+        {% endif %}
       {% endfor %}
     </table>
   </div>
