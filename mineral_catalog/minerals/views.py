@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Mineral
 from collections import OrderedDict
@@ -18,7 +18,9 @@ def mineral_detail(request, pk):
                 except KeyError:
                     field_count[key] = 1
 
-    mineral = Mineral.objects.values().get(pk=pk)
+    # mineral = Mineral.objects.values().get(pk=pk)
+    mineral = get_object_or_404(Mineral, pk=pk)
+    mineral = mineral.__dict__
     field_count = OrderedDict(
         sorted(field_count.items(), key=lambda x: x[1], reverse=True))
 
