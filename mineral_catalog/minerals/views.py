@@ -7,11 +7,22 @@ from collections import OrderedDict
 
 
 def mineral_detail(request, pk):
-    mineral = Mineral.objects.values().get(pk=pk)
-    mineral.pop('id', None)
+    minerals = Mineral.objects.values().all()
+    field_count = {}
 
-    mineral = OrderedDict(
-        sorted(mineral.items(), key=lambda x: x[1], reverse=True))
+    for mineral in minerals:
+        for key, value in mineral.items():
+            if value != '' and key != 'id':
+                try:
+                    field_count[key] = field_count[key] + 1
+                except KeyError:
+                    field_count[key] = 1
+
+    mineral = Mineral.objects.values().get(pk=pk)
+    field_count = OrderedDict(
+        sorted(field_count.items(), key=lambda x: x[1], reverse=True))
 
     return render(request, 'mineral_detail.html',
-                  {'mineral': mineral, 'detail': True})
+                  {'mineral': mineral,
+                   'detail': True,
+                   'field_count': field_count})

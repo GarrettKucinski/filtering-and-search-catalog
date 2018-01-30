@@ -14,3 +14,14 @@ def replace_underscores_with_space(key):
 def generate_random_num():
     mineral_count = Mineral.objects.all().count()
     return randint(1, mineral_count)
+
+
+@register.filter
+def get_dict_value(obj, key):
+    try:
+        if obj[key] != '':
+            return obj[key]
+        else:
+            return '-'
+    except KeyError:
+        return ''

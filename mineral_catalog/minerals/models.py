@@ -2,29 +2,29 @@ from django.db import models
 
 
 class Mineral(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    image_filename = models.CharField(max_length=255, blank=True, null=True)
-    image_caption = models.CharField(max_length=255, blank=True, null=True)
-    category = models.CharField(max_length=255, blank=True, null=True)
-    formula = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255,)
+    image_filename = models.CharField(max_length=255)
+    image_caption = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+    formula = models.CharField(max_length=255)
     strunz_classification = models.CharField(
-        max_length=255, blank=True, null=True)
-    color = models.CharField(max_length=255, blank=True, null=True)
-    crystal_system = models.CharField(max_length=255, blank=True, null=True)
-    unit_cell = models.CharField(max_length=255, blank=True, null=True)
-    crystal_symmetry = models.CharField(max_length=255, blank=True, null=True)
-    cleavage = models.CharField(max_length=255, blank=True, null=True)
+        max_length=255)
+    color = models.CharField(max_length=255)
+    crystal_system = models.CharField(max_length=255)
+    unit_cell = models.CharField(max_length=255)
+    crystal_symmetry = models.CharField(max_length=255)
+    cleavage = models.CharField(max_length=255)
     mohs_scale_hardness = models.CharField(
-        max_length=255, blank=True, null=True)
-    luster = models.CharField(max_length=255, blank=True, null=True)
-    streak = models.CharField(max_length=255, blank=True, null=True)
-    diaphaneity = models.CharField(max_length=255, blank=True, null=True)
+        max_length=255)
+    luster = models.CharField(max_length=255)
+    streak = models.CharField(max_length=255)
+    diaphaneity = models.CharField(max_length=255)
     optical_properties = models.CharField(
-        max_length=255, blank=True, null=True)
-    refractive_index = models.CharField(max_length=255, blank=True, null=True)
-    crystal_habit = models.CharField(max_length=255, blank=True, null=True)
-    specific_gravity = models.CharField(max_length=255, blank=True, null=True)
-    group = models.CharField(max_length=255, blank=True, null=True)
+        max_length=255)
+    refractive_index = models.CharField(max_length=255)
+    crystal_habit = models.CharField(max_length=255)
+    specific_gravity = models.CharField(max_length=255)
+    group = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
